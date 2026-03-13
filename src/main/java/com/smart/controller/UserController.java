@@ -51,7 +51,7 @@ public class UserController {
 	
 	
 	@PutMapping("/{id}")
-	public User updateUser(@PathVariable Long id, @RequestBody User user) {
+	public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
 		
 		User existingUser = userService.getUsersById(id);
 		
