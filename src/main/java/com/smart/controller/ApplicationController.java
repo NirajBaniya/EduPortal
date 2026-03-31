@@ -41,12 +41,12 @@ public class ApplicationController {
 	
 	// admin can ACCEPT, REJECT AND PENDING the application
 	
-	@PutMapping("/{id}/status")
-	public Application updateStatus(
-			@PathVariable Long id,
-			@PathVariable ApplicationStatus status) {
+	@PutMapping("/{id}")
+	public Application updateApplication(
+			@PathVariable("id") Long id,
+			@RequestBody Application updatedApp) {
 		
-		return applicationService.updateStatus(id, status);
+		return applicationService.updateStatus(id, updatedApp.getStatus());
 	}
 	
 	

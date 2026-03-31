@@ -16,7 +16,6 @@ public class Application {
 	 
 	 // Many applications can be belong to one user 
 	 @ManyToOne
-	 @JsonIgnore
 	 @JoinColumn(name = "user_id")
 	 private User user;
 	 
