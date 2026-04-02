@@ -38,6 +38,11 @@ public class ApplicationService {
 			 throw new RuntimeException("User and course must be provided");
 		 }
 		 
+		 // Gpa validation
+		 if(application.getGpa() == null || application.getGpa() < 0 || application.getGpa() > 4 ) {
+			 throw new RuntimeException("GPA must be between 0 to 4");
+		 }
+		 
 		 
 		 
 		 // Get IDs from request
@@ -91,8 +96,13 @@ public class ApplicationService {
 	 
 	 
 	 public Application getApplicationById(Long id) {
-		 return applicationRepository.findById(id).orElse(null);
+		 return applicationRepository.findById(id)
+				 .orElseThrow(() -> new RuntimeException("Application not found"));
 	 }
+	 
+	 
+	 
+	 
 	 
 	 // if user want to see their application 
 	 public List<Application> getApplicationsByUser(Long userId) {
@@ -121,6 +131,11 @@ public class ApplicationService {
 	 
 	 
 	 public void deleteApplication(Long id) {
+		 
+		 if(!applicationRepository.existsById(id)) {
+			  throw new RuntimeException("Application not found");
+		 }
+		 
 		 applicationRepository.deleteById(id);
 	 }
 	 
