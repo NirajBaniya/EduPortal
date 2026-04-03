@@ -49,6 +49,12 @@ public class ApplicationService {
 		 Long userId = application.getUser().getId();
 		 Long courseId = application.getCourse().getId();
 		 
+		 // id validation
+		 
+		 if(application.getUser().getId() == null || application.getCourse().getId() == null) {
+			 throw new RuntimeException("User Id and Course Id must be provided");
+		 }
+		 
 		 
 		 //  Fetching full objects from database
 		 User user = userRepository.findById(userId)

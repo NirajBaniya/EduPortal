@@ -53,7 +53,13 @@ public class UserController {
 	@PutMapping("/{id}")
 	public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
 		
+		
 		User existingUser = userService.getUsersById(id);
+		
+      if(existingUser == null) {
+			throw new RuntimeException("User not found");
+		}
+		
 		
 		existingUser.setName(user.getName());
 		existingUser.setEmail(user.getEmail());
